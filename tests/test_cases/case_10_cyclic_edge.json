@@ -1,0 +1,5 @@
+{
+  "name": "Cyclic Reference Edge Case",
+  "prompt": "Create a cyclic schema validation test with Node_A referencing Node_B, and Node_B referencing Node_A.",
+  "category": "Edge Case"
+}

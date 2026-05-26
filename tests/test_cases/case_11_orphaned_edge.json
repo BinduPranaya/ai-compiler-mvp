@@ -1,0 +1,5 @@
+{
+  "name": "Orphaned UI API Edge Case",
+  "prompt": "Build a simple app that has custom UI page categories but no matching API endpoint collections to verify UI-API alignment validation rules.",
+  "category": "Edge Case"
+}

@@ -1,0 +1,5 @@
+{
+  "name": "Developer Blog & Publishing",
+  "prompt": "Build a Developer Markdown Blog platform. Authors can publish articles and toggle is_premium paywalls. Readers upgrade to premium to access paywalled content.",
+  "category": "Standard"
+}

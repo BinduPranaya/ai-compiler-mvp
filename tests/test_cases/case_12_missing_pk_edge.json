@@ -1,0 +1,5 @@
+{
+  "name": "Missing Primary Key Edge Case",
+  "prompt": "Generate a database model layout where the task table has no primary key field defined to test validator PK injector healing.",
+  "category": "Edge Case"
+}

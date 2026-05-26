@@ -1,0 +1,5 @@
+{
+  "name": "Subscription E-Commerce",
+  "prompt": "Create a Subscription E-Commerce Store with product catalogs, shopping carts, checkout orders, and recurring subscriptions. Premium members get 20% discount on standard products.",
+  "category": "Standard"
+}

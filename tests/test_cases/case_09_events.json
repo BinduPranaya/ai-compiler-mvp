@@ -1,0 +1,5 @@
+{
+  "name": "Event Ticket Portal",
+  "prompt": "Build an Event Management and Ticket Ticketing platform. Assign seats, select ticket types, and manage attendee lists. VIP tickets gated.",
+  "category": "Standard"
+}

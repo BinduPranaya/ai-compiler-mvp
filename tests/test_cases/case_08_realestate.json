@@ -1,0 +1,5 @@
+{
+  "name": "Real Estate Broker Platform",
+  "prompt": "Create a Real Estate Listings platform. Agents upload properties, and visitors submit leads queries. Premium featured listings are pinned at the top.",
+  "category": "Standard"
+}

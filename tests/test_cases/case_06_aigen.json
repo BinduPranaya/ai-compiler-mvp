@@ -1,0 +1,5 @@
+{
+  "name": "AI Content Assistant",
+  "prompt": "Create an AI Writing Assistant platform. Track text prompt logs, document items, and credit usage balance. Basic users limited to 5 AI requests daily.",
+  "category": "Standard"
+}

@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Compiler MVP Dashboard</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;600;800;900&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- App Container -->
+    <div id="app" class="app-layout">
+        <!-- Sidebar: Presets -->
+        <aside class="sidebar-presets glass-panel">
+            <div class="sidebar-header">
+                <div class="logo-circle">AC</div>
+                <h2>AI-Compiler presets</h2>
+            </div>
+            <div class="presets-info">Select a test scenario to auto-fill the prompt:</div>
+            
+            <div class="presets-section">
+                <h3>Standard Blueprints</h3>
+                <div id="standard-presets" class="presets-list">
+                    <!-- Loaded dynamically -->
+                </div>
+            </div>
+
+            <div class="presets-section">
+                <h3>Integrity Edge Cases</h3>
+                <div id="edge-presets" class="presets-list">
+                    <!-- Loaded dynamically -->
+                </div>
+            </div>
+        </aside>
+
+        <!-- Main Workspace -->
+        <main class="main-workspace">
+            <header class="app-header">
+                <div class="header-title">
+                    <h1>AI Compiler Sandbox</h1>
+                    <p class="tagline">Convert natural language descriptions into executable, self-healed application blueprints</p>
+                </div>
+                <div class="status-badge" id="compiler-connection">
+                    <span class="pulse-dot"></span>
+                    <span class="status-text">Server: Operational</span>
+                </div>
+            </header>
+
+            <!-- Prompt Canvas -->
+            <section class="prompt-canvas glass-panel">
+                <div class="canvas-header">
+                    <h3>Describe your application requirements</h3>
+                    <span class="badge">Stage 0: Input Specification</span>
+                </div>
+                <div class="input-area">
+                    <textarea id="prompt-input" placeholder="e.g. Create a Task Manager SaaS with categories. Users get 10 tasks. Premium users get unlimited tasks and folder sharing."></textarea>
+                    <button id="compile-btn" class="glow-button">
+                        <span class="btn-text">Compile Blueprint</span>
+                        <span class="btn-icon">🚀</span>
+                    </button>
+                </div>
+            </section>
+
+            <!-- Visual Pipeline Stage Nodes -->
+            <section class="pipeline-track glass-panel">
+                <div class="pipeline-header">
+                    <h3>Mandatory Compiler Pipeline Stage Flow</h3>
+                </div>
+                <div class="pipeline-flow">
+                    <div class="pipeline-node" id="node-intent">
+                        <div class="node-icon">🔍</div>
+                        <div class="node-name">1. Intent Extractor</div>
+                        <div class="node-status">Idle</div>
+                    </div>
+                    <div class="node-arrow">➔</div>
+                    <div class="pipeline-node" id="node-design">
+                        <div class="node-icon">📐</div>
+                        <div class="node-name">2. System Design</div>
+                        <div class="node-status">Idle</div>
+                    </div>
+                    <div class="node-arrow">➔</div>
+                    <div class="pipeline-node" id="node-schema">
+                        <div class="node-icon">📁</div>
+                        <div class="node-name">3. Schema Generator</div>
+                        <div class="node-status">Idle</div>
+                    </div>
+                    <div class="node-arrow">➔</div>
+                    <div class="pipeline-node" id="node-validation">
+                        <div class="node-icon">🛡️</div>
+                        <div class="node-name">4. Validator & Repair</div>
+                        <div class="node-status">Idle</div>
+                    </div>
+                    <div class="node-arrow">➔</div>
+                    <div class="pipeline-node" id="node-ready">
+                        <div class="node-icon">⚡</div>
+                        <div class="node-name">5. Sandbox Ready</div>
+                        <div class="node-status">Idle</div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Compilation Metrics & Repairs -->
+            <div class="metrics-grid" style="display: none;" id="metrics-panel">
+                <div class="metric-card glass-panel">
+                    <span class="metric-label">Compilation Time</span>
+                    <span class="metric-value" id="val-time">0 ms</span>
+                </div>
+                <div class="metric-card glass-panel">
+                    <span class="metric-label">Validation Status</span>
+                    <span class="metric-value" id="val-status">PASSED</span>
+                </div>
+                <div class="metric-card glass-panel" id="repairs-card">
+                    <span class="metric-label">Self-Heal Interventions</span>
+                    <span class="metric-value" id="val-repairs">0</span>
+                </div>
+            </div>
+
+            <!-- Tabs Result Viewports -->
+            <section class="results-viewport glass-panel" style="display: none;" id="results-panel">
+                <div class="tabs-header">
+                    <button class="tab-btn active" data-tab="tab-blueprint">Compiled Blueprint</button>
+                    <button class="tab-btn" data-tab="tab-erd">Relational ERD</button>
+                    <button class="tab-btn" data-tab="tab-code">Generated Codebases</button>
+                    <button class="tab-btn" data-tab="tab-logs">Compiler Logs</button>
+                </div>
+
+                <div class="tabs-body">
+                    <!-- Tab: Blueprint JSON -->
+                    <div class="tab-content active" id="tab-blueprint">
+                        <pre><code id="blueprint-code" class="json-code"></code></pre>
+                    </div>
+
+                    <!-- Tab: Mermaid ERD -->
+                    <div class="tab-content" id="tab-erd">
+                        <div class="erd-visualizer">
+                            <div class="erd-notice">Mermaid.js Entity Relationship Diagram Syntax:</div>
+                            <pre><code id="erd-syntax" class="mermaid-code"></code></pre>
+                        </div>
+                    </div>
+
+                    <!-- Tab: Code Exporters -->
+                    <div class="tab-content" id="tab-code">
+                        <div class="code-export-layout">
+                            <div class="code-tabs-header">
+                                <button class="code-tab-btn active" data-code="code-sql">PostgreSQL DDL</button>
+                                <button class="code-tab-btn" data-code="code-fastapi">FastAPI Backend</button>
+                                <button class="code-tab-btn" data-code="code-react">React UI Component</button>
+                            </div>
+                            <div class="code-tabs-body">
+                                <div class="code-tab-content active" id="code-sql">
+                                    <pre><code id="sql-export-code" class="sql-code"></code></pre>
+                                </div>
+                                <div class="code-tab-content" id="code-fastapi">
+                                    <pre><code id="fastapi-export-code" class="python-code"></code></pre>
+                                </div>
+                                <div class="code-tab-content" id="code-react">
+                                    <pre><code id="react-export-code" class="javascript-code"></code></pre>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Tab: Compiler logs -->
+                    <div class="tab-content" id="tab-logs">
+                        <div class="terminal-log-stream" id="log-stream"></div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- STATEFUL EXECUTION SIMULATOR SANDBOX -->
+            <section class="simulator-sandbox glass-panel" style="display: none;" id="sandbox-panel">
+                <div class="sandbox-header">
+                    <div class="header-details">
+                        <h2>Stage 5: Live Execution Simulator Sandbox</h2>
+                        <p>Interact with a stateful, running model instance of your compiled application</p>
+                    </div>
+                    <div class="role-selector">
+                        <label for="sandbox-role">Active Auth Persona:</label>
+                        <select id="sandbox-role">
+                            <option value="user">User (Basic Account)</option>
+                            <option value="premium">Premium Pro (Paywalled access)</option>
+                            <option value="admin">System Administrator</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="sandbox-grid">
+                    <!-- Column 1: API Client Form -->
+                    <div class="sandbox-api-client">
+                        <h3>Simulated REST API client</h3>
+                        <form id="api-request-form">
+                            <div class="input-row">
+                                <select id="request-method">
+                                    <option value="GET">GET</option>
+                                    <option value="POST">POST</option>
+                                    <option value="DELETE">DELETE</option>
+                                </select>
+                                <input type="text" id="request-path" placeholder="/api/tasks" value="/api/tasks">
+                            </div>
+                            
+                            <div class="body-editor-wrap" id="req-body-editor-wrap" style="display: none;">
+                                <label for="request-body">POST Request Payload (JSON):</label>
+                                <textarea id="request-body" placeholder='{ "title": "Buy groceries", "status": "pending" }'></textarea>
+                            </div>
+
+                            <button type="submit" class="glow-button" id="sandbox-execute-btn">Execute Simulated Call</button>
+                        </form>
+
+                        <div class="sandbox-console-log">
+                            <h4>Simulated API HTTP Response Output:</h4>
+                            <pre><code id="api-response-console" class="json-code">// Response will output here</code></pre>
+                        </div>
+                    </div>
+
+                    <!-- Column 2: Virtual Database Viewer -->
+                    <div class="sandbox-database-viewer">
+                        <div class="db-viewer-header">
+                            <h3>Virtual Database State</h3>
+                            <button id="refresh-db-btn">Refresh DB</button>
+                        </div>
+                        <div class="db-tables-list" id="db-tables-inspector">
+                            <!-- Tables rendered dynamically -->
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- UI Interaction Scripts -->
+    <script src="app.js"></script>
+</body>
+</html>

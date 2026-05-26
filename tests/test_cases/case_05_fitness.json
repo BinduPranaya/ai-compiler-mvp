@@ -1,0 +1,5 @@
+{
+  "name": "Gym Workout Tracker",
+  "prompt": "Build a Gym Workout Tracker. Log workouts, sets, reps, and exercise target muscle categories. Premium users unlock custom routine builders.",
+  "category": "Standard"
+}

@@ -1,0 +1,5 @@
+{
+  "name": "Task Manager SaaS",
+  "prompt": "Create a secure Task Manager with custom category tags. Basic users are limited to 10 tasks. Premium users get unlimited tasks, custom folders, and sharing features.",
+  "category": "Standard"
+}

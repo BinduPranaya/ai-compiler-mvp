@@ -1,0 +1,5 @@
+{
+  "name": "Doctor Scheduling System",
+  "prompt": "Build a Doctor Scheduler booking system. Patients book appointments on doctor calendars. Protected medical_records readable by patients and doctors only.",
+  "category": "Standard"
+}
